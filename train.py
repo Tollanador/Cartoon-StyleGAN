@@ -420,7 +420,7 @@ def train(args, loader, generator, generator_source, discriminator, g_optim, d_o
                     }
                 )
 
-            if i % 200 == 0: # combine this with below later
+            if i % 5 == 0: # Should probably make this an argument. 
                 with torch.no_grad():
                     g_ema.eval()
                     sample, _ = g_ema([sample_z])
@@ -432,7 +432,7 @@ def train(args, loader, generator, generator_source, discriminator, g_optim, d_o
                         range=(-1, 1),
                     )
 
-            if i % 200 == 0: #save more often
+            if i % 200 == 0: #save more often # and this.
                 torch.save(
                     {
                         "g": g_module.state_dict(),
