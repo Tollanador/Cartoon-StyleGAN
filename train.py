@@ -420,7 +420,7 @@ def train(args, loader, generator, generator_source, discriminator, g_optim, d_o
                     }
                 )
 
-            if i % grid_freq == 0: # create sample grid frequency. 
+            if i % args.grid_freq == 0: # create sample grid frequency. 
                 with torch.no_grad():
                     g_ema.eval()
                     sample, _ = g_ema([sample_z])
