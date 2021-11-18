@@ -420,7 +420,7 @@ def train(args, loader, generator, generator_source, discriminator, g_optim, d_o
                     }
                 )
 
-            if i % 5 == 0: # Should probably make this an argument. 
+            if i % grid_freq == 0: # create sample grid frequency. 
                 with torch.no_grad():
                     g_ema.eval()
                     sample, _ = g_ema([sample_z])
@@ -453,6 +453,8 @@ if __name__ == "__main__":
     device = "cuda"
 
     parser = argparse.ArgumentParser(description="StyleGAN2 trainer")
+    
+    parser.add_argument("--grid_freq", type=int, default=100, help="frequency of generating a grid of sample images")
 
     parser.add_argument("--path", type=str, help="path to the lmdb dataset")
     parser.add_argument('--arch', type=str, default='stylegan2', help='model architectures (stylegan2 | swagan)')
